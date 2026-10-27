@@ -23,11 +23,11 @@ namespace ZuesDigitalDesigns.Migrations
 
             modelBuilder.Entity("ZuesDigitalDesigns.Models.Project", b =>
                 {
-                    b.Property<int>("DesignId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DesignId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -49,7 +49,7 @@ namespace ZuesDigitalDesigns.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("DesignId");
+                    b.HasKey("Id");
 
                     b.ToTable("Projects");
                 });

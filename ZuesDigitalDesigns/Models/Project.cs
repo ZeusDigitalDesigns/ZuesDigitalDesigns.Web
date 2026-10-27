@@ -8,7 +8,7 @@ namespace ZuesDigitalDesigns.Models;
 public class Project
 {
     [Key] 
-    public int DesignId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [MaxLengthAttribute(100)]
@@ -18,9 +18,11 @@ public class Project
     [MaxLength(500)]
     public string Description { get; set; } = string.Empty;
     
+    [Required]
     [MaxLength(255)]
     public string ImagePath { get; set; } = string.Empty;
     
+    [Required]
     [MaxLength(255)]
     public string RepoUrl { get; set; } = string.Empty;
 }

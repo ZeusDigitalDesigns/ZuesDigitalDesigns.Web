@@ -31,14 +31,13 @@ namespace ZuesDigitalDesigns.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BusinessName")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(254)
+                        .HasColumnType("nvarchar(254)");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -50,8 +49,8 @@ namespace ZuesDigitalDesigns.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("SubmittedOn")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("SubmittedOn")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 

@@ -15,11 +15,11 @@ public class ContactInquiry
     
     // Not required
     [MaxLength(150)]
-    public string BusinessName { get; set; } = string.Empty;
+    public string? BusinessName { get; set; } 
     
     [Required(AllowEmptyStrings = false)]
     [EmailAddress]
-    [MaxLength(100)]
+    [MaxLength(254)] // 254 is max length for an email address
     public required string Email { get; set; }
     
     [Required(AllowEmptyStrings = false)]
@@ -27,5 +27,5 @@ public class ContactInquiry
     public required string Message { get; set; }
     
     // Automatically the time they submit the form
-    public DateTime SubmittedOn { get; set; } = DateTime.UtcNow;
+    public DateTimeOffset SubmittedOn { get; set; } = DateTimeOffset.UtcNow;
 }

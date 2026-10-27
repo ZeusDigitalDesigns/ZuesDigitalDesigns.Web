@@ -12,4 +12,7 @@ public class ApplicationDbContext : DbContext
     
     // Maps the Project model to a SQL table named Projects
     public DbSet<Project> Projects { get; set; }
+    
+    // Maps the ContactInquiry model to the SQL table
+    public DbSet<ContactInquiry> ContactInquiries { get; set; }
 }

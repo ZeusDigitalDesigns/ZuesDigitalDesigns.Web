@@ -10,11 +10,11 @@ public class Project
     [Key] 
     public int Id { get; set; }
 
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     [MaxLengthAttribute(100)]
     public string Title { get; set; } = string.Empty;
     
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     [MaxLength(500)]
     public string Description { get; set; } = string.Empty;
     

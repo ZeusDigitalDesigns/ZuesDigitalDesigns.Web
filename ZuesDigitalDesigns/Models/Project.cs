@@ -1,0 +1,28 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace ZuesDigitalDesigns.Models;
+
+/// <summary>
+/// Represents a project model used within the application, encapsulating details about a design project.
+/// </summary>
+public class Project
+{
+    [Key] 
+    public int Id { get; set; }
+
+    [Required(AllowEmptyStrings = false)]
+    [MaxLengthAttribute(100)]
+    public string Title { get; set; } = string.Empty;
+    
+    [Required(AllowEmptyStrings = false)]
+    [MaxLength(500)]
+    public string Description { get; set; } = string.Empty;
+    
+    [Required]
+    [MaxLength(255)]
+    public string ImagePath { get; set; } = string.Empty;
+    
+    [Required]
+    [MaxLength(255)]
+    public string RepoUrl { get; set; } = string.Empty;
+}

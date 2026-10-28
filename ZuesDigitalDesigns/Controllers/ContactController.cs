@@ -1,76 +1,106 @@
-using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
-using ZuesDigitalDesigns.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using ZuesDigitalDesigns.Data;
+using ZuesDigitalDesigns.Models;
 
-namespace ZuesDigitalDesigns.Controllers;
-
-/// <summary>
-/// Responsible for managing interactions related to the contact form,
-/// including rendering the contact form view, processing submitted data,
-/// and displaying a thank-you page upon successful submission.
-/// </summary>
-public class ContactController : Controller
+namespace ZuesDigitalDesigns.Controllers
 {
-    
-    private readonly ApplicationDbContext _context;
+    /// <summary>
+    /// Provides functionality for handling contact-related interactions, such as submitting
+    /// inquiries through a contact form. Includes features like rate-limiting, deduplication,
+    /// and persisting valid inquiries to the database.
+    /// </summary>
+    public class ContactController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+        private readonly IMemoryCache _cache; // Injected for rate limiting
 
-    public ContactController(ApplicationDbContext context)
-    {
-        _context = context;
-    }
-    
-    // GET: Gives the contact form
-    
-    [HttpGet]
-    public IActionResult Index()
-    {
-        return View();
-    }
-    
-
-    // POST: Catches the submitted form data
-    [HttpPost]
-    [ValidateAntiForgeryToken] 
-    public async Task<IActionResult> Index(ContactInquiry inquiry)
-    {
-        if (!ModelState.IsValid)
+        public ContactController(ApplicationDbContext context, IMemoryCache cache)
         {
-            return View(inquiry); 
+            _context = context;
+            _cache = cache;
         }
 
-        // Zero out the ID to prevent explicit identity insert crashes
-        inquiry.Id = 0;
-
-        // Prevent double-clicks and basic bot spam by checking for 
-        // the exact same message from the same email in the last 24 hours.
-        DateTimeOffset yesterday = DateTimeOffset.UtcNow.AddDays(-1);
-            
-        bool isDuplicate = _context.ContactInquiries.Any(c => 
-            c.Email == inquiry.Email && 
-            c.Message == inquiry.Message && 
-            c.SubmittedOn > yesterday);
-
-        if (isDuplicate)
+        [HttpGet]
+        public IActionResult Index()
         {
-            // Silently redirect duplicates so bots get no feedback
-            // and double-clicking users just see the success page.
+            return View();
+        }
+
+        /// <summary>
+        /// Handles the submission of a contact inquiry, applying rate-limiting, deduplication,
+        /// and saving valid inquiries to the database.
+        /// </summary>
+        /// <param name="inquiry">
+        /// The contact inquiry submitted by the user, containing details such as name, email,
+        /// and message.
+        /// </param>
+        /// <returns>
+        /// A redirection to the ThankYou view if the submission is successful or flagged (rate limit or duplication).
+        /// Returns the original view with validation errors if the model state is invalid.
+        /// </returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(ContactInquiry inquiry)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(inquiry);
+            }
+
+            inquiry.Id = 0;
+
+            // RATE LIMITING 
+            // Grab the user's IP to track how many times they submit
+            string clientIp = HttpContext.Connection.RemoteIpAddress?.ToString() 
+                              ?? "unknown_ip";
+            string cacheKey = $"Contact_Limit_{clientIp}";
+
+            if (_cache.TryGetValue(cacheKey, out int submissions))
+            {
+                if (submissions >= 3)
+                {
+                    // If they hit the limit, silently redirect them. 
+                    // Bots will think it worked and move on.
+                    return RedirectToAction("ThankYou");
+                }
+                
+                // Increment their count for the next hour
+                _cache.Set(cacheKey, submissions + 1, TimeSpan.FromHours(1));
+            }
+            else
+            {
+                // First submission, start the counter
+                _cache.Set(cacheKey, 1, TimeSpan.FromHours(1));
+            }
+
+            // DEDUPLICATION 
+            DateTimeOffset yesterday = DateTimeOffset.UtcNow.AddDays(-1);
+            bool isDuplicate = _context.ContactInquiries.Any(c => 
+                c.Email == inquiry.Email && 
+                c.Message == inquiry.Message && 
+                c.SubmittedOn > yesterday);
+
+            if (isDuplicate)
+            {
+                return RedirectToAction("ThankYou");
+            }
+
+            // SAVE TO DATABASE 
+            inquiry.SubmittedOn = DateTimeOffset.UtcNow;
+            _context.ContactInquiries.Add(inquiry);
+            await _context.SaveChangesAsync();
+
             return RedirectToAction("ThankYou");
         }
 
-        inquiry.SubmittedOn = DateTimeOffset.UtcNow;
-
-        _context.ContactInquiries.Add(inquiry);
-        await _context.SaveChangesAsync();
-
-        return RedirectToAction("ThankYou");
-    }
-    
-    // GET: Thank you page
-    [HttpGet]
-    public IActionResult ThankYou()
-    {
-        return View();
+        [HttpGet]
+        public IActionResult ThankYou()
+        {
+            return View();
+        }
     }
 }

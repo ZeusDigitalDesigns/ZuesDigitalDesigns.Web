@@ -113,17 +113,17 @@ body {
 .btn-cta {
   display: inline-block;
   background-color: #aa7108;
-  color: #ffffff;
+  color: #1a252c;
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 800;
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .btn-cta:hover {
-  background-color: #c98509; /* Slightly brighter orange on hover */
+  background-color: #c98509; 
   color: #ffffff;
 }
 
@@ -136,7 +136,7 @@ body {
   font-size: 2rem;
   margin-bottom: 2rem;
   color: #1a252c;
-  border-bottom: 4px solid #0476b1; /* Steel blue accent underline */
+  border-bottom: 4px solid #0476b1; 
   display: inline-block;
   padding-bottom: 0.5rem;
 }
@@ -145,7 +145,7 @@ body {
   display: flex;
   gap: 2rem;
   justify-content: center;
-  flex-wrap: wrap; /* Forces wrapping on small screens */
+  flex-wrap: wrap; 
 }
 
 .service-card {
@@ -153,17 +153,17 @@ body {
   padding: 2rem;
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  flex: 1 1 300px; /* Grows/shrinks, min-width 300px for mobile */
-  border-top: 4px solid #0476b1; /* Steel blue top edge */
+  flex: 1 1 300px; 
+  border-top: 4px solid #0476b1; 
   transition: transform 0.2s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
+  transform: translateY(-5px); 
 }
 
 .service-title {
-  color: #0476b1; /* Steel blue text for subheaders */
+  color: #0476b1; 
   margin-bottom: 1rem;
   font-size: 1.25rem;
 }

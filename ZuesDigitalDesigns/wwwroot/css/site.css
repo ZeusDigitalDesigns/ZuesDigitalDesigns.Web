@@ -82,3 +82,88 @@ body {
     justify-content: center;
   }
 }
+
+/* Landing Page: Hero Section */
+
+.hero-section {
+  background-color: #1a252c;
+  color: #f4f7f6;
+  text-align: center;
+  padding: 5rem 2rem;
+  border-bottom: 6px solid #0476b1;
+  margin-bottom: 3rem;
+  border-radius: 8px;
+}
+
+.hero-headline {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.hero-subheadline {
+  font-size: 1.25rem;
+  max-width: 650px;
+  margin: 0 auto 2rem auto;
+  color: #cccccc;
+}
+
+/* Burnt Orange Call To Action */
+.btn-cta {
+  display: inline-block;
+  background-color: #aa7108;
+  color: #ffffff;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cta:hover {
+  background-color: #c98509; /* Slightly brighter orange on hover */
+  color: #ffffff;
+}
+
+/* --- Landing Page: Services Section --- */
+.services-section {
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1a252c;
+  border-bottom: 4px solid #0476b1; /* Steel blue accent underline */
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.services-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap; /* Forces wrapping on small screens */
+}
+
+.service-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  flex: 1 1 300px; /* Grows/shrinks, min-width 300px for mobile */
+  border-top: 4px solid #0476b1; /* Steel blue top edge */
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.service-title {
+  color: #0476b1; /* Steel blue text for subheaders */
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}

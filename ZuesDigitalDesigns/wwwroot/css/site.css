@@ -195,7 +195,7 @@ they drop to the next row.
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 2rem; 
   padding: 0 1rem; 
 }

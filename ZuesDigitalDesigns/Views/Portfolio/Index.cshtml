@@ -1,3 +1,5 @@
+@using ZuesDigitalDesigns.Models
+@model List<Project>
 @{
     ViewData["Title"] = "Our Work";
 }
@@ -8,56 +10,30 @@
         Custom applications and sites built for the daily grind.
     </p>
 
-    <!-- CSS Grid wrapper for the cards -->
+    <!-- CSS Grid wrapper for the dynamically generated cards -->
     <div class="project-grid">
         
-        <!-- Project Card 1 -->
-        
-        <div class="project-card">
-            <img src="https://placehold.co/600x400/1a252c/f4f7f6?text=App+UI" 
-                 alt="Project Image" 
-                 class="project-img" />
-            <div class="project-info">
-                <h3 class="project-title">Inventory Tracker</h3>
-                <p class="project-desc">
-                    A streamlined material tracking portal for a local 
-                    custom cabinet shop.
-                </p>
-                <a href="#" class="btn-project">View Details</a>
+        @foreach (Project project in Model)
+        {
+            <!-- Dynamically generated Project Card -->
+            <div class="project-card">
+                <!-- Uses a fallback placeholder if the database ImagePath is empty -->
+                <img src="@(string.IsNullOrEmpty(project.ImagePath) ? "https://placehold.co/600x400/1a252c/f4f7f6?text=Project+UI" : project.ImagePath)" 
+                     alt="@project.Title" 
+                     class="project-img" />
+                
+                <div class="project-info">
+                    <h3 class="project-title">@project.Title</h3>
+                    
+                    <p class="project-desc">
+                        @project.Description
+                    </p>
+                    
+                    <!-- We will wire up the details routing in a future issue -->
+                    <a href="#" class="btn-project">View Details</a>
+                </div>
             </div>
-        </div>
-
-        <!-- Project Card 2 -->
-        
-        <div class="project-card">
-            <img src="https://placehold.co/600x400/1a252c/f4f7f6?text=Site+UI" 
-                 alt="Project Image" 
-                 class="project-img" />
-            <div class="project-info">
-                <h3 class="project-title">HVAC Lead Generator</h3>
-                <p class="project-desc">
-                    High-conversion landing page and automated quote 
-                    system for an HVAC crew.
-                </p>
-                <a href="#" class="btn-project">View Details</a>
-            </div>
-        </div>
-
-        <!-- Project Card 3 -->
-        
-        <div class="project-card">
-            <img src="https://placehold.co/600x400/1a252c/f4f7f6?text=Portal+UI" 
-                 alt="Project Image" 
-                 class="project-img" />
-            <div class="project-info">
-                <h3 class="project-title">Contractor Dashboard</h3>
-                <p class="project-desc">
-                    Centralized dashboard managing client invoices, 
-                    scheduling, and dispatch.
-                </p>
-                <a href="#" class="btn-project">View Details</a>
-            </div>
-        </div>
+        }
 
     </div>
 </div>

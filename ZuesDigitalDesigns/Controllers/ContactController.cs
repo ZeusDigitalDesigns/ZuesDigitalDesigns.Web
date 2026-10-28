@@ -29,29 +29,41 @@ public class ContactController : Controller
         return View();
     }
     
-    // POST: Receives the contact form data
 
+    // POST: Catches the submitted form data
     [HttpPost]
-    [ValidateAntiForgeryToken]
+    [ValidateAntiForgeryToken] 
     public async Task<IActionResult> Index(ContactInquiry inquiry)
     {
-        
-        // Failsafe for bad data
         if (!ModelState.IsValid)
         {
-            
-            // Returns the from with validation error message
-            return View(inquiry);
+            return View(inquiry); 
         }
-        
-        // Make sure the timestamp is always accurate
+
+        // Zero out the ID to prevent explicit identity insert crashes
+        inquiry.Id = 0;
+
+        // Prevent double-clicks and basic bot spam by checking for 
+        // the exact same message from the same email in the last 24 hours.
+        DateTimeOffset yesterday = DateTimeOffset.UtcNow.AddDays(-1);
+            
+        bool isDuplicate = _context.ContactInquiries.Any(c => 
+            c.Email == inquiry.Email && 
+            c.Message == inquiry.Message && 
+            c.SubmittedOn > yesterday);
+
+        if (isDuplicate)
+        {
+            // Silently redirect duplicates so bots get no feedback
+            // and double-clicking users just see the success page.
+            return RedirectToAction("ThankYou");
+        }
+
         inquiry.SubmittedOn = DateTimeOffset.UtcNow;
-        
-        // Save it to the DB
+
         _context.ContactInquiries.Add(inquiry);
         await _context.SaveChangesAsync();
-        
-        // Redirect to a thank you page
+
         return RedirectToAction("ThankYou");
     }
     

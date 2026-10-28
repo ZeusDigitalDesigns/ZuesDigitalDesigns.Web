@@ -2,7 +2,55 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-headline">Built for the Trades.</h1>
+        <p class="hero-subheadline">
+            Professional, rugged, and reliable web applications for contractors,
+            builders, and local businesses.
+        </p>
+        <!-- Burnt orange CTA button -->
+        <a asp-controller="Contact" asp-action="Index" class="btn-cta">
+            Get a Quote
+        </a>
+    </div>
+</div>
+
+<!-- Services Section -->
+
+<div class="services-section">
+    <h2 class="section-title">What We Build</h2>
+    <div class="services-grid">
+        
+        <!-- Service Card 1 -->
+        
+        <div class="service-card">
+            <h3 class="service-title">Custom Web Apps</h3>
+            <p>
+                Tailor-made software to manage your workflow, from inventory to
+                client portals. Built robust and scalable.
+            </p>
+        </div>
+
+        <!-- Service Card 2 -->
+        
+        <div class="service-card">
+            <h3 class="service-title">Trade & Contractor Sites</h3>
+            <p>
+                High-performance landing pages that turn local traffic into
+                qualified leads. Stop relying on social media algorithms.
+            </p>
+        </div>
+        
+        <!-- Service Card 3 -->
+        
+        <div class="service-card">
+            <h3 class="service-title">Database Management</h3>
+            <p>
+                Secure SQL database architecture to keep your business data 
+                organized, accessible, and strictly typed.
+            </p>
+        </div>
+    </div>
 </div>

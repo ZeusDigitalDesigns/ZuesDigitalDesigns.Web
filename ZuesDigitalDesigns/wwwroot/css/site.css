@@ -167,3 +167,96 @@ body {
   margin-bottom: 1rem;
   font-size: 1.25rem;
 }
+
+/* Portfolio Gallery Section */
+
+.portfolio-container {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.portfolio-header {
+  font-size: 2.5rem;
+  color: #1a252c;
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-subheader {
+  font-size: 1.5rem;
+  color: #1a252c;
+  margin-bottom: 3rem;
+}
+
+/*
+Auto-collapsing grid:
+columns will be at least 300px wide. if screen shrinks,
+they drop to the next row.
+ */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; 
+  padding: 0 1rem; 
+}
+
+/* Card Styling */
+
+.project-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-bottom: 5px solid #0476b1; 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.project-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.project-title {
+  color: #1a252c;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-desc {
+  color: #555;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Button style utilizing the steel blue palette */
+
+.btn-project {
+  align-self: center;
+  background-color: #0476b1;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-project:hover {
+  background-color: #1a252c; 
+  color: #ffffff;
+}

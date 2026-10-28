@@ -1,0 +1,47 @@
+@using ZuesDigitalDesigns.Models
+@model ContactInquiry
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="contact-container" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
+    <h1 style="color: #1a252c; border-bottom: 4px solid #0476b1; display: inline-block;">
+        Get a Quote
+    </h1>
+    <p style="margin-bottom: 2rem; color: #555;">
+        Ready to upgrade your shop's digital footprint? Drop us a line.
+    </p>
+
+    <form asp-controller="Contact" asp-action="Index" method="post">
+        
+        <div style="margin-bottom: 1rem;">
+            <label asp-for="Name" style="display: block; font-weight: bold;"></label>
+            <input asp-for="Name" class="form-control" style="width: 100%; padding: 0.5rem;" />
+            <span asp-validation-for="Name" style="color: red;"></span>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label asp-for="BusinessName" style="display: block; font-weight: bold;">
+                Business Name (Optional)
+            </label>
+            <input asp-for="BusinessName" class="form-control" style="width: 100%; padding: 0.5rem;" />
+            <span asp-validation-for="BusinessName" style="color: red;"></span>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label asp-for="Email" style="display: block; font-weight: bold;"></label>
+            <input asp-for="Email" type="email" class="form-control" style="width: 100%; padding: 0.5rem;" />
+            <span asp-validation-for="Email" style="color: red;"></span>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label asp-for="Message" style="display: block; font-weight: bold;"></label>
+            <textarea asp-for="Message" class="form-control" rows="5" style="width: 100%; padding: 0.5rem;"></textarea>
+            <span asp-validation-for="Message" style="color: red;"></span>
+        </div>
+
+        <button type="submit" class="btn-cta" style="width: 100%; cursor: pointer;">
+            Send Inquiry
+        </button>
+    </form>
+</div>

@@ -1,35 +1,46 @@
-using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ZuesDigitalDesigns.Models;
+using Microsoft.AspNetCore.Mvc;
 using ZuesDigitalDesigns.Data;
+using ZuesDigitalDesigns.Models;
 
-namespace ZuesDigitalDesigns.Controllers;
-
-/// <summary>
-/// Controller responsible for handling portfolio-related functionality
-/// within the application. Provides methods for interacting with and displaying
-/// design project data stored in the database.
-/// </summary>
-public class PortfolioController : Controller
+namespace ZuesDigitalDesigns.Controllers
 {
-    // Holds the database context.
-    private readonly ApplicationDbContext _context;
-    
-    // Injects the database context via the constructor.
-    public PortfolioController(ApplicationDbContext context)
+    /// <summary>
+    /// Handles portfolio-related requests, such as displaying a list of projects.
+    /// Communicates with the database using <see cref="ApplicationDbContext"/>
+    /// to retrieve and display project data.
+    /// </summary>
+    public class PortfolioController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    // GET
-    // Returns the main gallery grid view.
-    public IActionResult Index()
-    {
-        // Retrieve all projects from the database
-        List<Project> projects = _context.Projects.ToList();
-        
-        // Pass the populated list directly into the view
-        return View(projects);
+        public PortfolioController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            List<Project> projects = new List<Project>();
+
+            try
+            {
+                // Order by newest, limit to 12 to prevent memory limits
+                projects = _context.Projects
+                    .OrderByDescending(p => p.Id)
+                    .Take(12)
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                // If SQL goes down, fallback to an empty list 
+                // so the webpage still loads gracefully without a 500 error.
+                projects = new List<Project>();
+            }
+
+            return View(projects);
+        }
     }
 }

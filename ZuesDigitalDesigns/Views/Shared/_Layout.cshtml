@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Zues Digital Designs</title>
     
+    <!-- BRAND FAVICONS GO HERE -->
+    <link rel="icon" type="image/png" href="~/images/main-logo.png" />
+    <link rel="apple-touch-icon" href="~/images/main-logo.png" />
+    
     <!-- Link to the custom stylesheet -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
@@ -12,8 +16,10 @@
 <header>
     <nav class="navbar">
         <div class="nav-brand">
-            <a asp-controller="Home" asp-action="Index">
-                Zues Digital Designs
+            <!-- BRAND LOGO AND TEXT GO HERE -->
+            <a asp-controller="Home" asp-action="Index" style="display: flex; align-items: center; gap: 10px;">
+                <img src="~/images/main-logo.png" alt="Zues Digital Designs Logo" style="height: 45px; width: auto;" />
+                ZUES DIGITAL DESIGNS
             </a>
         </div>
         <ul class="nav-links">

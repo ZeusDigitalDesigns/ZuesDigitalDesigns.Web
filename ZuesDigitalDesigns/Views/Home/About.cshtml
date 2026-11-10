@@ -5,7 +5,8 @@
 <div class="about-container" style="max-width: 1000px; margin: 0 auto; padding: 3rem 1rem;">
     
     <div style="text-align: center; margin-bottom: 3rem;">
-        <h1 style="color: #1a252c; border-bottom: 4px solid #0476b1; display: inline-block;">
+        <!-- FIX: Updated to cyan with a burnt orange underline -->
+        <h1 style="color: var(--cyan-bright); border-bottom: 4px solid var(--burnt-orange); display: inline-block; padding-bottom: 0.5rem;">
             The Builder Behind the Code
         </h1>
     </div>
@@ -13,34 +14,59 @@
     <!-- Flex container for image and text -->
     <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start;">
         
-        <!-- Left Column: Placeholder for Headshot -->
+        <!-- Left Column: Professional Headshot -->
         <div style="flex: 1 1 300px; text-align: center;">
-            <img src="https://placehold.co/400x500/1a252c/f4f7f6?text=Your+Photo" 
-                 alt="About Image" 
-                 style="width: 100%; max-width: 400px; border-radius: 8px; border-bottom: 5px solid #0476b1; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+            <img src="~/images/main-logo.png" 
+                 alt="Zac Kimball - Zues Digital Designs" 
+                 style="width: 100%; max-width: 400px; border-radius: 8px; border-bottom: 5px solid var(--electric-blue); box-shadow: 0 4px 15px rgba(19, 160, 234, 0.15);" />
         </div>
 
-        <!-- Right Column: The Narrative Meat -->
-        <div style="flex: 2 1 400px; font-size: 1.15rem; color: #333;">
-            <h2 style="color: #0476b1; margin-bottom: 1rem;">
+        <!-- Right Column: The Narrative -->
+        <!-- Base text color updated to the readable off-white -->
+        <div style="flex: 2 1 400px; font-size: 1.15rem; color: var(--text-main);">
+            
+            <!-- Subheader updated to burnt orange -->
+            <h2 style="color: var(--burnt-orange); margin-bottom: 1rem;">
                 Built for the trades, by the trades.
             </h2>
             
             <p style="margin-bottom: 1.5rem;">
-                [Placeholder: Paragraph 1 - Introduce yourself and your core 
-                mission for Zues Digital Designs.]
+                I’m Zac Kimball, most people just call me Zues, and I’m the engine 
+                behind Zues Digital Designs. Based out in the woods near 
+                Eatonville, Washington, my mission is straightforward: I build heavy-duty, 
+                reliable software for businesses that actually get their hands dirty. 
+                I don't write bloated code, and I don't speak in tech-bro buzzwords. 
+                Whether it's a custom dispatch portal for an HVAC crew or a streamlined 
+                inventory tracker for a cabinet shop, I build digital tools that work 
+                just as hard as you do.
             </p>
             
             <p style="margin-bottom: 1.5rem;">
-                [Placeholder: Paragraph 2 - Drop in your background experience. 
-                Talk about the CNC programming, the HVAC service days, and the 
-                firefighting. Establish that blue-collar credibility.]
+                My background isn't sitting in a climate-controlled cubicle. 
+                I’m a U.S. Marine veteran who spent years keeping military aviation 
+                electronics, flight, and targeting systems mission-ready.
+                After the Corps, I spent a decade answering the call as a volunteer 
+                firefighter and EMT, nine years turning wrenches as a local HVAC 
+                service tech, and nearly ten years programming and operating heavy 
+                CNC machinery. On top of that, I built and ran my own automated vending 
+                company, Sasquatch Snacks.
+                Whether it's managing scheduling and patient flow for private medical 
+                and dental practices, or handling logistics, material tracking, 
+                and equipment deployment for dirtwork and construction crews, I know exactly 
+                what it takes to keep a business breathing. I don't just understand 
+                workflows; I've built them, repaired them, and lived them.            
             </p>
             
             <p style="margin-bottom: 2rem;">
-                [Placeholder: Paragraph 3 - Talk about the transition to software 
-                engineering and how you bring that same rugged work ethic to 
-                building applications.]
+                In March 2024, a catastrophic injury took me off the shop floor and out of the attics for good. 
+                But instead of clocking out, I took the exact same precision, grit, and millimeter-accuracy 
+                I used to command heavy machinery and weaponized it to build high-performance business software.
+                Today, I’m maintaining a 4.0 GPA in Computer Science at Clover Park Technical College, 
+                focusing on one thing: engineering fast, rock-solid applications that solve real-world 
+                operational bottlenecks. I don't sugarcoat, I don't take shortcuts, and I don't waste 
+                your time or money on over-complicated code. If you want software built by someone 
+                who actually knows how a business operates, from the grease on the floor to the profit 
+                on the balance sheet. Let's Talk Shop!            
             </p>
 
             <a asp-controller="Contact" asp-action="Index" class="btn-cta">

@@ -88,6 +88,32 @@ namespace ZuesDigitalDesigns.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "QRForge is a custom, cross-platform QR Code Generator built with C# and .NET 10. Featuring a sleek industrial UI theme, this tool is designed for developers and users who need to generate and log QR codes efficiently.",
+                            ImagePath = "/images/qrforge-logo.png",
+                            RepoUrl = "",
+                            Title = "QRForge"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Nexus Sports Center is a comprehensive sports management web app. It streamlines operations by allowing users to create teams, manage player rosters, and assign home venues. With intuitive tools to schedule matches, log game results, and seamlessly filter historical scores, it serves as the ultimate hub for organizing competitive play.",
+                            ImagePath = "/images/Nexus-logo.png",
+                            RepoUrl = "",
+                            Title = "Nexus Sports Center"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "A full-stack .NET 10 MVC portal designed to eliminate the logistical chaos of running a modern dance studio. Features include class registration, secure tuition billing, competition tracking, and role-based dashboards for directors, instructors, and parents.",
+                            ImagePath = "/images/dance-logo.png",
+                            RepoUrl = "",
+                            Title = "Dance Studio Management"
+                        });
                 });
 #pragma warning restore 612, 618
         }

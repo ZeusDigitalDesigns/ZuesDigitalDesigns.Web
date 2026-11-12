@@ -25,4 +25,8 @@ public class Project
     [Required]
     [MaxLength(255)]
     public string RepoUrl { get; set; } = string.Empty;
+    
+    public string Problem { get; set; } 
+    public string Solution { get; set; }
+    public string TechStack { get; set; }
 }

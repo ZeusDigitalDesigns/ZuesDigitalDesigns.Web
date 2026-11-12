@@ -58,7 +58,7 @@ body {
 }
 
 .nav-links a {
-  color: var(--text-main);
+  color: var(--electric-blue);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease, text-shadow 0.3s ease;
@@ -81,7 +81,7 @@ body {
 /* --- Footer --- */
 .site-footer {
   background-color: var(--navy-surface);
-  color: var(--text-muted);
+  color: var(--electric-blue);
   padding: 1.5rem;
   text-align: center;
   margin-top: auto;
@@ -273,4 +273,74 @@ body {
   background-color: var(--electric-blue);
   color: #ffffff;
   box-shadow: 0 0 15px rgba(19, 160, 234, 0.4);
+}
+
+/* Override Bootstrap modal colors to match the custom dark theme */
+.modal-content {
+  background-color: #1a252c;
+  color: #f4f7f6;
+  border: 1px solid #2c3e50;
+}
+
+.modal-header {
+  border-bottom: 1px solid #2c3e50;
+}
+
+.modal-footer {
+  border-top: 1px solid #2c3e50;
+}
+
+
+/* --- PORTFOLIO MODAL ACCENT COLORS --- */
+
+/* Burnt Orange Close 'X' in the top right */
+.modal-header .btn-close {
+  /* Remove Bootstrap's default white filter for dark mode */
+  filter: none;
+  /* Inject custom SVG with Burnt Orange fill (%23 is the # symbol) */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23CC5500'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+}
+
+/* Steel Blue border and text for the bottom Exit button */
+.modal-footer .btn-outline-secondary {
+  border-color: var(--electric-blue);
+  color: var(--cyan-bright);
+}
+
+/* Make it solid Steel Blue when hovered */
+.modal-footer .btn-outline-secondary:hover {
+  background-color: var(--electric-blue);
+  color: #ffffff;
+}
+
+/* Steel Blue for the horizontal rule lines */
+.modal-body hr {
+  border-color: var(--electric-blue);
+  opacity: 0.8;
+}
+
+/* Reusable Brand Colors */
+.text-brand-orange {
+  color: var(--burnt-orange) !important;
+}
+
+/* Hide this from real users, bots will still see it in the DOM */
+.honey-pot-field {
+  display: none !important;
+}
+
+/* Custom Brand Orange Button */
+.btn-brand-orange {
+  background-color: var(--burnt-orange);
+  border-color: var(--burnt-orange);
+  color: #ffffff;
+}
+
+/* Slightly darker shade for the hover and click states */
+.btn-brand-orange:hover,
+.btn-brand-orange:focus,
+.btn-brand-orange:active {
+  background-color: var(--electric-blue);
+  border-color: var(--cyan-bright);
+  color: #ffffff;
 }

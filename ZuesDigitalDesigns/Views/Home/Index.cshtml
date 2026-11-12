@@ -2,55 +2,126 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!-- Hero Section -->
-<div class="hero-section">
-    <div class="hero-content">
-        <h1 class="hero-headline">Built for the Trades.</h1>
-        <p class="hero-subheadline">
-            Professional, rugged, and reliable web applications for contractors,
-            builders, and local businesses.
+<!-- HERO SECTION -->
+<div class="hero-section position-relative d-flex align-items-center">
+    <img src="~/images/main-logo.png" 
+         alt="Zues Watermark" 
+         class="hero-watermark" />
+         
+    <div class="container text-center z-3 position-relative">
+        <h1 class="display-3 fw-bold text-white mb-4 text-uppercase">
+            Blue-Collar Work Ethic.<br />
+            <span class="text-brand-orange">High-End Web Engineering.</span>
+        </h1>
+        
+        <p class="lead text-light mb-5 fs-4 mx-auto" 
+           style="max-width: 800px;">
+            Forging custom web applications, relational databases, 
+            and automated systems that work as hard as you do.
         </p>
-        <!-- Burnt orange CTA button -->
-        <a asp-controller="Contact" asp-action="Index" class="btn-cta">
-            Get a Quote
-        </a>
+        
+        <div class="d-flex justify-content-center gap-4 flex-wrap">
+            <a asp-controller="Contact" asp-action="Index" 
+               class="btn btn-brand-orange btn-lg px-5 py-3 fw-bold shadow">
+                GET A QUOTE
+            </a>
+            <a asp-controller="Portfolio" asp-action="Index" 
+               class="btn btn-outline-steel btn-lg px-5 py-3 fw-bold shadow">
+                VIEW MY WORK
+            </a>
+        </div>
     </div>
 </div>
 
-<!-- Services Section -->
-
-<div class="services-section">
-    <h2 class="section-title">What We Build</h2>
-    <div class="services-grid">
+<!-- THE TECH ARSENAL (Spec Plates) -->
+<div class="container my-5 py-5">
+    <h2 class="text-center mb-5 fw-bold text-uppercase border-bottom 
+               border-secondary pb-3 d-inline-block mx-auto">
+        The Tech Arsenal
+    </h2>
+    
+    <!-- Expanded Grid of 8 Industrial Spec Plates -->
+    <div class="row g-4 mt-2 text-center justify-content-center">
         
-        <!-- Service Card 1 -->
-        
-        <div class="service-card">
-            <h3 class="service-title">Custom Web Apps</h3>
-            <p>
-                Tailor-made software to manage your workflow, from inventory to
-                client portals. Built robust and scalable.
-            </p>
-        </div>
-
-        <!-- Service Card 2 -->
-        
-        <div class="service-card">
-            <h3 class="service-title">Trade & Contractor Sites</h3>
-            <p>
-                High-performance landing pages that turn local traffic into
-                qualified leads. Stop relying on social media algorithms.
-            </p>
+        <!-- Plate 1: The Core Language -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">C#</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    Object-Oriented
+                </small>
+            </div>
         </div>
         
-        <!-- Service Card 3 -->
-        
-        <div class="service-card">
-            <h3 class="service-title">Database Management</h3>
-            <p>
-                Secure SQL database architecture to keep your business data 
-                organized, accessible, and strictly typed.
-            </p>
+        <!-- Plate 2: The Framework -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">.NET 10</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    ASP.NET Core MVC
+                </small>
+            </div>
         </div>
+        
+        <!-- Plate 3: Database -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">SQL Server</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    Relational Data
+                </small>
+            </div>
+        </div>
+        
+        <!-- Plate 4: Scripting & Automation -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">Python</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    Automation & Scripts
+                </small>
+            </div>
+        </div>
+        
+        <!-- Plate 5: Front-End Logic -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">JavaScript</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    Dynamic UI
+                </small>
+            </div>
+        </div>
+        
+        <!-- Plate 6: UI Design -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">HTML / CSS</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    Responsive Design
+                </small>
+            </div>
+        </div>
+        
+        <!-- Plate 7: DevOps -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">Docker</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    Containerization
+                </small>
+            </div>
+        </div>
+        
+        <!-- Plate 8: Version Control -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="spec-plate shadow-lg">
+                <h4 class="text-brand-orange fw-bold mb-1">Git / GitHub</h4>
+                <small class="text-muted text-uppercase fw-bold">
+                    Version Control
+                </small>
+            </div>
+        </div>
+        
     </div>
 </div>

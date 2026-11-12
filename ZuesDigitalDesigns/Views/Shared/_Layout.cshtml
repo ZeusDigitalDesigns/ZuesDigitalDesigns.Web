@@ -17,51 +17,111 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-<header>
-    <nav class="navbar">
-        <div class="nav-brand">
-            <!-- BRAND LOGO AND TEXT GO HERE -->
-            <a asp-controller="Home" asp-action="Index" 
-               style="display: flex; align-items: center; gap: 10px;">
-                <img src="~/images/main-logo.png" 
-                     alt="Zues Digital Designs Logo" 
-                     style="height: 45px; width: auto;" />
-                Zues Digital Designs
-            </a>
+    <!-- MATRIX SPLASH (Executes only on the root Home Page) -->
+    @if (ViewContext.RouteData.Values["controller"]?.ToString() == "Home" &&
+         ViewContext.RouteData.Values["action"]?.ToString() == "Index")
+    {
+        <div id="matrix-splash"
+             style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+                    background-color: #050a0f; z-index: 9999999; display: flex; 
+                    justify-content: center; align-items: center; 
+                    transition: opacity 0.3s ease;">
+
+            <div style="font-family: 'Courier New', monospace; color: #00ff00; 
+                        font-size: clamp(1.5rem, 4vw, 2.5rem); 
+                        text-shadow: 0 0 12px rgba(0, 255, 0, 0.8);">
+                <span id="matrix-text"></span><span id="matrix-cursor">_</span>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li>
-                <a asp-controller="Portfolio" asp-action="Index">
-                    Portfolio
+
+        <!-- 1. Synchronous check: Hides the splash instantly if already seen -->
+        <script>
+            if (sessionStorage.getItem('matrixForged')) {
+                document.getElementById('matrix-splash').style.display = 'none';
+            }
+        </script>
+
+        <!-- 2. The main animation logic -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const splash = document.getElementById("matrix-splash");
+
+                // If already seen, completely remove the HTML and abort the script
+                if (sessionStorage.getItem('matrixForged')) {
+                    if (splash) splash.remove();
+                    return;
+                }
+
+                // First visit: Set the session flag so it doesn't run again
+                sessionStorage.setItem('matrixForged', 'true');
+
+                const text = "> Initializing Zues Digital Designs...";
+                let index = 0;
+                const textElem = document.getElementById("matrix-text");
+                const cursorElem = document.getElementById("matrix-cursor");
+
+                // Blinking cursor logic
+                setInterval(() => {
+                    if (cursorElem) {
+                        cursorElem.style.opacity =
+                            cursorElem.style.opacity === "0" ? "1" : "0";
+                    }
+                }, 500);
+
+                // Typewriter logic
+                function type() {
+                    if (index < text.length) {
+                        textElem.innerHTML += text.charAt(index);
+                        index++;
+                        setTimeout(type, 60);
+                    } else {
+                        // Wait 3000ms, fade to clear, then delete from DOM
+                        setTimeout(() => {
+                            splash.style.opacity = "0";
+                            setTimeout(() => { splash.remove(); }, 300);
+                        }, 3000);
+                    }
+                }
+
+                // Start typing sequence
+                setTimeout(type, 500);
+            });
+        </script>
+    }
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <!-- BRAND LOGO AND TEXT GO HERE -->
+                <a asp-controller="Home" asp-action="Index"
+                   style="display: flex; align-items: center; gap: 10px;">
+                    <img src="~/images/main-logo.png"
+                         alt="Zues Digital Designs Logo"
+                         style="height: 45px; width: auto;"/>
+                    Zues Digital Designs
                 </a>
-            </li>
-            <li><a asp-controller="Home" asp-action="About">About</a></li>
-            <li>
-                <a asp-controller="Contact" asp-action="Index">
-                    Contact
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-    
-<main class="container">
-    <!-- This is where individual page views get injected -->
-    @RenderBody()
-</main>
+            </div>
+            <ul class="nav-links">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Portfolio" asp-action="Index">Portfolio</a></li>
+                <li><a asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<footer class="site-footer">
-    <p>
-        &copy; @DateTime.Now.Year - Zues Digital Designs LLC. 
-        Built for the trades.
-    </p>
-</footer>
+    <main class="container">
+        <!-- This is where individual page views get injected -->
+        @RenderBody()
+    </main>
 
-<!-- Bootstrap 5 JS Bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-</script>
+    <footer class="site-footer">
+        <p>&copy; @DateTime.Now.Year Zues Digital Designs LLC. Built for the trades.</p>
+    </footer>
 
-@await RenderSectionAsync("Scripts", required: false)
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -75,10 +75,22 @@ namespace ZuesDigitalDesigns.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Problem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RepoUrl")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Solution")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TechStack")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -95,7 +107,10 @@ namespace ZuesDigitalDesigns.Migrations
                             Id = 1,
                             Description = "QRForge is a custom, cross-platform QR Code Generator built with C# and .NET 10. Featuring a sleek industrial UI theme, this tool is designed for developers and users who need to generate and log QR codes efficiently.",
                             ImagePath = "/images/qrforge-logo.png",
+                            Problem = "Users needed a fast, reliable, offline desktop tool to generate QR codes without paying for subscription web services.",
                             RepoUrl = "",
+                            Solution = "Built a standalone, cross-platform desktop application using Avalonia UI for instant, local QR generation.",
+                            TechStack = "C#, .NET 10, Avalonia UI",
                             Title = "QRForge"
                         },
                         new
@@ -103,7 +118,10 @@ namespace ZuesDigitalDesigns.Migrations
                             Id = 2,
                             Description = "Nexus Sports Center is a comprehensive sports management web app. It streamlines operations by allowing users to create teams, manage player rosters, and assign home venues. With intuitive tools to schedule matches, log game results, and seamlessly filter historical scores, it serves as the ultimate hub for organizing competitive play.",
                             ImagePath = "/images/Nexus-logo.png",
+                            Problem = "Local sports leagues lacked a unified system to manage rosters, schedule games, and track historical scores.",
                             RepoUrl = "",
+                            Solution = "Developed a comprehensive relational database and UI to streamline all league logistics in one hub.",
+                            TechStack = "C#, ASP.NET Core MVC, EF Core, SQL Server",
                             Title = "Nexus Sports Center"
                         },
                         new
@@ -111,7 +129,10 @@ namespace ZuesDigitalDesigns.Migrations
                             Id = 3,
                             Description = "A full-stack .NET 10 MVC portal designed to eliminate the logistical chaos of running a modern dance studio. Features include class registration, secure tuition billing, competition tracking, and role-based dashboards for directors, instructors, and parents.",
                             ImagePath = "/images/dance-logo.png",
+                            Problem = "Studio directors were drowning in paper registration forms and disorganized tuition billing processes.",
                             RepoUrl = "",
+                            Solution = "Created a secure, role-based portal to automate class sign-ups, billing, and competition tracking.",
+                            TechStack = "C#, .NET 10, HTML/CSS, Bootstrap 5",
                             Title = "Dance Studio Management"
                         });
                 });

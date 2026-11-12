@@ -10,15 +10,14 @@
         Custom applications and sites built for the daily grind.
     </p>
 
-    <!-- CSS Grid wrapper for the dynamically generated cards -->
+    <!-- CSS Grid wrapper strictly for the dynamically generated cards -->
     <div class="project-grid">
-        
         @foreach (Project project in Model)
         {
-            <!-- Dynamically generated Project Card -->
             <div class="project-card">
-                <!-- Uses a fallback placeholder if the database ImagePath is empty -->
-                <img src="@(string.IsNullOrEmpty(project.ImagePath) ? "https://placehold.co/600x400/1a252c/f4f7f6?text=Project+UI" : project.ImagePath)" 
+                <img src="@(string.IsNullOrEmpty(project.ImagePath) ? 
+                            "https://placehold.co/600x400/1a252c/f4f7f6?text=UI" : 
+                            project.ImagePath)" 
                      alt="@project.Title" 
                      class="project-img" />
                 
@@ -29,11 +28,96 @@
                         @project.Description
                     </p>
                     
-                    <!-- We will wire up the details routing in a future issue -->
-                    <a href="#" class="btn-project">View Details</a>
+                    <button type="button" 
+                            class="btn-project" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#modal-@project.Id">
+                        View Details
+                    </button>
                 </div>
             </div>
         }
-
     </div>
 </div>
+
+<!-- Modals must sit outside the custom CSS grid to stay hidden -->
+@foreach (Project project in Model)
+{
+    <div class="modal fade" 
+         id="modal-@project.Id" 
+         tabindex="-1" 
+         aria-labelledby="modalLabel-@project.Id" 
+         aria-hidden="true">
+        
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" 
+                        id="modalLabel-@project.Id">
+                        @project.Title
+                    </h5>
+                    <button type="button" 
+                            class="btn-close" 
+                            data-bs-dismiss="modal" 
+                            aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <!-- Added d-block and mx-auto to center the image -->
+                    <img src="@(string.IsNullOrEmpty(project.ImagePath) ? 
+                                "https://placehold.co/600x400?text=UI" : 
+                                project.ImagePath)" 
+                         class="img-fluid rounded mb-4 shadow-sm d-block mx-auto" 
+                         alt="@project.Title Screenshot">
+                    
+                    <h6 class="fw-bold text-primary">The Problem</h6>
+                    <p>@project.Problem</p>
+                    
+                    <h6 class="fw-bold text-primary mt-4">The Solution</h6>
+                    <p>@project.Solution</p>
+                    
+                    <hr class="my-4" />
+                    
+                    <h6 class="fw-bold mb-3">Tech Stack</h6>
+                    <div>
+                        @if (!string.IsNullOrEmpty(project.TechStack)) 
+                        {
+                            foreach (string tech in project.TechStack.Split(','))
+                            {
+                                string cleanTech = tech.Trim();
+                                
+                                // Map specific technologies to Bootstrap colors
+                                string badgeBg = cleanTech switch 
+                                {
+                                    "C#" => "bg-primary",
+                                    ".NET 10" => "bg-primary",
+                                    "ASP.NET Core MVC" => "bg-primary",
+                                    "Avalonia UI" => "bg-danger",
+                                    "EF Core" => "bg-info text-dark",
+                                    "SQL Server" => "bg-info text-dark",
+                                    "HTML/CSS" => "bg-warning text-dark",
+                                    "Bootstrap 5" => "bg-success",
+                                    _ => "bg-secondary"
+                                };
+                                
+                                <span class="badge @badgeBg me-2 fs-6">
+                                    @cleanTech
+                                </span>
+                            }
+                        }
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" 
+                            class="btn btn-outline-secondary" 
+                            data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+}

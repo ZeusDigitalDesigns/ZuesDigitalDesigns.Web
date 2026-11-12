@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ZuesDigitalDesigns.Data;
+using ZuesDigitalDesigns.Services;
 
 namespace ZuesDigitalDesigns;
 
@@ -17,6 +18,7 @@ public class Program
         
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddTransient<EmailService>();
 
         // Grab the connection string from appsettings.json
         string connectionString = builder.Configuration

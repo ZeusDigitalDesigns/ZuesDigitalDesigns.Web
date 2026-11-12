@@ -31,7 +31,14 @@ namespace ZuesDigitalDesigns.Data
                                   "theme, this tool is designed for " +
                                   "developers and users who need to " +
                                   "generate and log QR codes efficiently.",
-                    ImagePath = "/images/qrforge-logo.png" 
+                    ImagePath = "/images/qrforge-logo.png",
+                    Problem = "Users needed a fast, reliable, offline " +
+                              "desktop tool to generate QR codes without " +
+                              "paying for subscription web services.",
+                    Solution = "Built a standalone, cross-platform " +
+                               "desktop application using Avalonia UI " +
+                               "for instant, local QR generation.",
+                    TechStack = "C#, .NET 10, Avalonia UI"
                 },
                 new Project 
                 { 
@@ -47,7 +54,14 @@ namespace ZuesDigitalDesigns.Data
                                   "seamlessly filter historical scores, " + 
                                   "it serves as the ultimate hub for " + 
                                   "organizing competitive play.",
-                    ImagePath = "/images/Nexus-logo.png"
+                    ImagePath = "/images/Nexus-logo.png",
+                    Problem = "Local sports leagues lacked a unified " +
+                              "system to manage rosters, schedule games, " +
+                              "and track historical scores.",
+                    Solution = "Developed a comprehensive relational " +
+                               "database and UI to streamline all " +
+                               "league logistics in one hub.",
+                    TechStack = "C#, ASP.NET Core MVC, EF Core, SQL Server"
                 },
                 new Project 
                 { 
@@ -61,7 +75,14 @@ namespace ZuesDigitalDesigns.Data
                                   "competition tracking, and role-based " + 
                                   "dashboards for directors, " + 
                                   "instructors, and parents.",
-                    ImagePath = "/images/dance-logo.png" 
+                    ImagePath = "/images/dance-logo.png",
+                    Problem = "Studio directors were drowning in paper " +
+                              "registration forms and disorganized " +
+                              "tuition billing processes.",
+                    Solution = "Created a secure, role-based portal to " +
+                               "automate class sign-ups, billing, and " +
+                               "competition tracking.",
+                    TechStack = "C#, .NET 10, HTML/CSS, Bootstrap 5"
                 }
             );
         }

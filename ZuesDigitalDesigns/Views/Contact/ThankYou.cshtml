@@ -1,15 +1,46 @@
 @{
-    ViewData["Title"] = "Thank You";
+ViewData["Title"] = "Thank You";
 }
 
-<div style="text-align: center; padding: 5rem 2rem;">
-    <h1 style="color: #0476b1; font-size: 3rem; margin-bottom: 1rem;">
-        Message Sent!
-    </h1>
-    <p style="font-size: 1.2rem; color: #333; margin-bottom: 2rem;">
-        Thanks for reaching out. We'll be in touch shortly to talk shop.
+<div class="container text-center" style="margin-top: 10vh;">
+    <h1 class="text-brand-orange display-4 mb-4">Message Sent!</h1>
+
+    <p class="lead fs-3">
+        Thanks for reaching out. I'll review your project details
+        and get back to you shortly.
     </p>
-    <a asp-controller="Home" asp-action="Index" class="btn-cta">
-        Return Home
+
+    <p class="text-muted mt-5 fs-5">
+        Redirecting to the home page in
+        <span id="countdown" class="text-light fw-bold">10</span> seconds...
+    </p>
+
+    <!-- Shameless but necessary branding plug -->
+    <img src="~/images/main-logo.png"
+         alt="Zues Digital Designs Logo"
+         class="img-fluid d-block mx-auto my-4"
+         style="max-height: 400px;" />
+
+    <a asp-controller="Home" asp-action="Index"
+       class="btn btn-outline-secondary px-4 py-2 mb-5">
+        Return Home Now
     </a>
 </div>
+
+@section Scripts {
+<script>
+    // 10-second countdown and redirect
+    let timeLeft = 10;
+    let countdownSpan = document.getElementById('countdown');
+
+    let timer = setInterval(function() {
+        timeLeft--;
+        countdownSpan.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
+    }, 1000);
+</script>
+}

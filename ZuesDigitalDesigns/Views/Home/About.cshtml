@@ -2,35 +2,57 @@
     ViewData["Title"] = "About";
 }
 
-<div class="about-container" style="max-width: 1000px; margin: 0 auto; padding: 3rem 1rem;">
+<!-- Full-Screen Fixed Background Logo Watermark -->
+<!-- Uses the .about-watermark CSS class we just built -->
+<img src="~/images/main-logo.png" 
+     alt="Zues Digital Designs Background" 
+     class="about-watermark" />
+
+<div class="container my-5 py-4 position-relative z-3">
     
-    <div style="text-align: center; margin-bottom: 3rem;">
-        <!-- FIX: Updated to cyan with a burnt orange underline -->
-        <h1 style="color: var(--cyan-bright); border-bottom: 4px solid var(--burnt-orange); display: inline-block; padding-bottom: 0.5rem;">
-            The Builder Behind the Code
-        </h1>
+    <!-- TOP SECTION: Centered 3D Flip Card -->
+    <div class="row justify-content-center mb-5 pb-3">
+        <div class="col-auto">
+            <div class="flip-card">
+                <div class="flip-card-inner shadow-lg">
+                    
+                    <!-- FRONT: The Brand -->
+                    <div class="flip-card-front">
+                        <img src="~/images/main-logo.png" 
+                             alt="Zues Digital Designs Logo" 
+                             class="img-fluid w-100" />
+                    </div>
+                    
+                    <!-- BACK: The Architect (SmilingHeadshot.png) -->
+                    <div class="flip-card-back">
+                        <img src="~/images/SmilingHeadshot.png" 
+                             alt="Zac Kimball" 
+                             class="img-fluid h-100" 
+                             style="object-fit: cover;" />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Flex container for image and text -->
-    <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: flex-start;">
-        
-        <!-- Left Column: Professional Headshot -->
-        <div style="flex: 1 1 300px; text-align: center;">
-            <img src="~/images/main-logo.png" 
-                 alt="Zac Kimball - Zues Digital Designs" 
-                 style="width: 100%; max-width: 400px; border-radius: 8px; border-bottom: 5px solid var(--electric-blue); box-shadow: 0 4px 15px rgba(19, 160, 234, 0.15);" />
-        </div>
-
-        <!-- Right Column: The Narrative -->
-        <!-- Base text color updated to the readable off-white -->
-        <div style="flex: 2 1 400px; font-size: 1.15rem; color: var(--text-main);">
+    <!-- LOWER SECTION: The Narrative -->
+    <div class="row justify-content-center">
+        <!-- Constrained width so the text is easy to read -->
+        <div class="col-lg-10 col-xl-8">
             
-            <!-- Subheader updated to burnt orange -->
-            <h2 style="color: var(--burnt-orange); margin-bottom: 1rem;">
+            <div class="text-center mb-4">
+                <h1 class="display-4 fw-bold text-uppercase" 
+                    style="color: var(--cyan-bright, #00ffff); border-bottom: 4px solid var(--burnt-orange, #d35400); display: inline-block; padding-bottom: 0.5rem;">
+                    The Builder Behind the Code
+                </h1>
+            </div>
+
+            <h2 class="text-center mb-5" style="color: var(--burnt-orange, #d35400);">
                 Built for the trades, by the trades.
             </h2>
             
-            <p style="margin-bottom: 1.5rem;">
+            <p class="lead text-light mb-4" style="font-size: 1.25rem; line-height: 1.8;">
                 I’m Zac Kimball, most people just call me Zues, and I’m the engine 
                 behind Zues Digital Designs. Based out in the woods near 
                 Eatonville, Washington, my mission is straightforward: I build heavy-duty, 
@@ -41,7 +63,7 @@
                 just as hard as you do.
             </p>
             
-            <p style="margin-bottom: 1.5rem;">
+            <p class="text-light fs-5 mb-4" style="line-height: 1.8;">
                 My background isn't sitting in a climate-controlled cubicle. 
                 I’m a U.S. Marine veteran who spent years keeping military aviation 
                 electronics, flight, and targeting systems mission-ready.
@@ -54,10 +76,10 @@
                 and dental practices, or handling logistics, material tracking, 
                 and equipment deployment for dirtwork and construction crews, I know exactly 
                 what it takes to keep a business breathing. I don't just understand 
-                workflows; I've built them, repaired them, and lived them.            
+                workflows; I've built them, repaired them, and lived them.
             </p>
             
-            <p style="margin-bottom: 2rem;">
+            <p class="text-light fs-5 mb-5" style="line-height: 1.8;">
                 In March 2024, a catastrophic injury took me off the shop floor and out of the attics for good. 
                 But instead of clocking out, I took the exact same precision, grit, and millimeter-accuracy 
                 I used to command heavy machinery and weaponized it to build high-performance business software.
@@ -66,13 +88,19 @@
                 operational bottlenecks. I don't sugarcoat, I don't take shortcuts, and I don't waste 
                 your time or money on over-complicated code. If you want software built by someone 
                 who actually knows how a business operates, from the grease on the floor to the profit 
-                on the balance sheet. Let's Talk Shop!            
+                on the balance sheet. Let's Talk Shop!
             </p>
 
-            <a asp-controller="Contact" asp-action="Index" class="btn-cta">
-                Let's Talk Shop
-            </a>
+            <!-- Call to Action Button (Mapped to your brand styles) -->
+            <div class="text-center mt-5 mb-5">
+                <a asp-controller="Contact" asp-action="Index" 
+                   class="btn btn-brand-orange btn-lg px-5 py-3 fw-bold shadow text-uppercase"
+                   style="font-size: 1.2rem; letter-spacing: 1px;">
+                    Let's Talk Shop
+                </a>
+            </div>
+            
         </div>
-        
     </div>
+    
 </div>

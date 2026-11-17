@@ -14,6 +14,8 @@ namespace ZuesDigitalDesigns.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<ContactInquiry> ContactInquiries { get; set; }
 
+        public DbSet<TechnicalWritingService> TechnicalWritingServices { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

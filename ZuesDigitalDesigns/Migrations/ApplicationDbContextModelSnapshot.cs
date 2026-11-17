@@ -136,6 +136,34 @@ namespace ZuesDigitalDesigns.Migrations
                             Title = "Dance Studio Management"
                         });
                 });
+
+            modelBuilder.Entity("ZuesDigitalDesigns.Models.TechnicalWritingService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TechnicalWritingServices");
+                });
 #pragma warning restore 612, 618
         }
     }
